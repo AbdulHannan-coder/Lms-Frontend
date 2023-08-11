@@ -25,6 +25,7 @@ import Icons from "views/examples/Icons.js";
 import Roles from "views/Roles/Roles";
 import Permissions from "views/Permissions/Permissions";
 import RolesPermission from "views/Roles_Permission/Roles_Permission";
+import Teacher from "views/Teacher/Teacher";
 
 var routes = [
   {
@@ -54,6 +55,13 @@ var routes = [
     name: "Roles & Permissions",
     icon: "ni ni-tv-2 text-primary",
     component: <RolesPermission />,
+    layout: "/admin",
+  },
+  {
+    path: "/teacher",
+    name: "Teachers",
+    icon: "ni ni-tv-2 text-primary",
+    component: <Teacher />,
     layout: "/admin",
   },
   {

@@ -50,7 +50,7 @@ import {
 
     const fetchParentPermissions = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/permissions/parent-permissions");
+        const response = await axios.get("http://argonbackend.test/api/permissions/parent-permissions");
         setParentPermissions(response.data.parentPermissions);
       } catch (error) {
         console.error("Error fetching parent permissions:", error);
@@ -59,7 +59,7 @@ import {
 
     const handleSaveParentPermission = async () => {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/api/permissions/store/parent-permission", {
+        const response = await axios.post("http://argonbackend.test/api/permissions/store/parent-permission", {
           name: permissionName,
           description: permissionDesc,
         });
@@ -86,7 +86,7 @@ import {
 
     const updateParentPermission = async () => {
         try {
-          const response = await axios.put(`http://127.0.0.1:8000/api/permissions/update-parent/${parentToUpdate}`, {
+          const response = await axios.put(`http://argonbackend.test/api/permissions/update-parent/${parentToUpdate}`, {
             name: permissionName,
             description: permissionDesc,
           });
@@ -124,7 +124,7 @@ import {
 
     const deleteParentPermission = async (parentId) => {
       try {
-        const response = await axios.delete(`http://127.0.0.1:8000/api/permissions/delete-parent/${parentId}`);
+        const response = await axios.delete(`http://argonbackend.test/api/permissions/delete-parent/${parentId}`);
 
         fetchParentPermissions();
 

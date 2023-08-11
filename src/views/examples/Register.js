@@ -33,7 +33,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/register", formData);
+      const response = await axios.post("http://argonbackend.test/api/register", formData);
       console.log(response.data); // Display the response from the API
       // Reset the form
       setFormData({ name: "", email: "", password: "" });

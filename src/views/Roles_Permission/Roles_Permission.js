@@ -64,7 +64,7 @@ import CreateRolePermissionModal from "./Modal/CreateRolePermissionModal";
 
     const fetchRoles = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/roles");
+        const response = await axios.get("http://argonbackend.test/api/roles");
         setRoles(response.data.roles);
       } catch (error) {
         console.error("Error fetching roles:", error);
@@ -74,7 +74,7 @@ import CreateRolePermissionModal from "./Modal/CreateRolePermissionModal";
     // Fetch permissions data from the API
     const fetchPermissions = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/permissions");
+        const response = await axios.get("http://argonbackend.test/api/permissions");
         setPermissions(response.data.permissions);
       } catch (error) {
         console.error("Error fetching permissions:", error);
@@ -83,7 +83,7 @@ import CreateRolePermissionModal from "./Modal/CreateRolePermissionModal";
 
      const fetchRolesPermissions = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/roles-permissions');
+      const response = await axios.get('http://argonbackend.test/api/roles-permissions');
       setRolesPermissions(response.data.rolePermissions);
     } catch (error) {
       console.error('Error fetching permissions:', error);
@@ -103,7 +103,7 @@ import CreateRolePermissionModal from "./Modal/CreateRolePermissionModal";
     const handleSaveChanges = async () => {
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/api/save-role-permissions",
+          "http://argonbackend.test/api/save-role-permissions",
           {
             roleId: selectedRole,
             permissions: selectedPermissions.map((permission) => permission.id),
@@ -134,7 +134,7 @@ import CreateRolePermissionModal from "./Modal/CreateRolePermissionModal";
 
     const handleDelete = async (roleId, permissionId) => {
       try {
-        const response = await axios.delete(`http://127.0.0.1:8000/api/roles-permissions/${roleId}/${permissionId}`);
+        const response = await axios.delete(`http://argonbackend.test/api/roles-permissions/${roleId}/${permissionId}`);
         console.log(response.data);
     
         fetchRolesPermissions();

@@ -56,7 +56,7 @@ import {
   
     const fetchRoles = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/roles");
+        const response = await axios.get("http://argonbackend.test/api/roles");
         setRoles(response.data.roles);
       } catch (error) {
         console.error("Error fetching roles:", error);
@@ -65,7 +65,7 @@ import {
   
     const handleSaveRole = async (roleName, roleDesc) => {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/api/roles/store", {
+        const response = await axios.post("http://argonbackend.test/api/roles/store", {
           name: roleName,
           description: roleDesc,
         });
@@ -93,7 +93,7 @@ import {
     
     const updateRole = async () => {
       try {
-        const response = await axios.put(`http://127.0.0.1:8000/api/role/${roleToUpdate}`, {
+        const response = await axios.put(`http://argonbackend.test/api/role/${roleToUpdate}`, {
           name: roleName,
           description: roleDesc,
         });
@@ -131,7 +131,7 @@ import {
   
     const handleDeleteRole = async (roleId) => {
     try {
-      const response = await axios.delete(`http://127.0.0.1:8000/api/role/${roleId}`);
+      const response = await axios.delete(`http://argonbackend.test/api/role/${roleId}`);
       fetchRoles();
       showAlert(response.data.message, "success");
       // Refresh the roles list or perform any other necessary actions
