@@ -26,6 +26,8 @@ import Roles from "views/Roles/Roles";
 import Permissions from "views/Permissions/Permissions";
 import RolesPermission from "views/Roles_Permission/Roles_Permission";
 import Teacher from "views/Teacher/Teacher";
+import Designation from "views/Designation/Designation";
+import Department from "views/Department/Department";
 
 var routes = [
   {
@@ -58,10 +60,24 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/teacher",
+    path: "/teachers",
     name: "Teachers",
     icon: "ni ni-tv-2 text-primary",
     component: <Teacher />,
+    layout: "/admin",
+  },
+  {
+    path: "/designations",
+    name: "Designation",
+    icon: "ni ni-tv-2 text-primary",
+    component: <Designation />,
+    layout: "/admin",
+  },
+  {
+    path: "/departments",
+    name: "Departments",
+    icon: "ni ni-tv-2 text-primary",
+    component: <Department />,
     layout: "/admin",
   },
   {

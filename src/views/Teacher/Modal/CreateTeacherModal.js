@@ -4,13 +4,16 @@ import { Button, Form, Input, Modal, Row, Col, FormGroup, Label } from "reactstr
 const CreateTeacherModal = (props) => {
   const {
     handleSaveChanges,
+    designations,
+    selectedDesignation,
+    handleDesignationSelect,
     toggleModal,
   } = props;
 
   const [formData, setFormData] = useState({
     name: "",
     image: "",
-    designation: "",
+    designation: `${selectedDesignation}`,
     department: "",
     contact_no: "",
     email: "",
@@ -19,12 +22,11 @@ const CreateTeacherModal = (props) => {
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
-    
-    // If the input id is "courses", you can directly update the courses array
+  
     if (id === "courses") {
       setFormData((prevData) => ({
         ...prevData,
-        [id]: value.split(',').map(course => course.trim()) // Convert comma-separated string to an array
+        [id]: value.split(',').map(course => course.trim())
       }));
     } else {
       setFormData((prevData) => ({
@@ -34,11 +36,9 @@ const CreateTeacherModal = (props) => {
     }
   };
   
-  
-
   const handleSaveClick = () => {
     props.handleSaveChanges(formData);
-  };
+  };  
   
 
   return (
@@ -108,10 +108,18 @@ const CreateTeacherModal = (props) => {
                         <Input
                           className="form-control-alternative"
                           id="designation"
-                          type="text"
-                          value={formData.designation}
-                          onChange={handleInputChange}
-                        />
+                          name="designation"
+                          type="select"
+                          value={selectedDesignation}
+                          onChange={handleDesignationSelect}
+                        >
+                          <option value="">Select Designation:</option>
+                          {designations.map((designation, index) => (
+                            <option key={index} value={designation.id}>
+                              {designation.name}
+                            </option>
+                          ))}
+                        </Input>
                       </Col>
                       <Col>
                         <Label for="department" size="md">

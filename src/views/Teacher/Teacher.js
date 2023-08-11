@@ -16,6 +16,14 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
   
   const Teacher = (props) => {
     const [teachers, setTeachers] = useState([]);
+    const [designations, setDesignations] = useState([]);
+
+    const [selectedDesignation, setSelectedDesignation] = useState("");
+
+    const handleDesignationSelect = (event) => {
+      const designation = event.target.value;
+      setSelectedDesignation(designation);
+    };
 
     const [alertMessage, setAlertMessage] = useState("");
     const [alertVisible, setAlertVisible] = useState(false);
@@ -39,28 +47,39 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
     };
 
     const fetchTeacher = async () => {
-        try {
+      try {
         const response = await axios.get('http://argonbackend.test/api/admin/teachers');
-        console.log(response.data.teacher);
         setTeachers(response.data.teacher);
-        } catch (error) {
-        console.error('Error fetching permissions:', error);
-        }
+      } catch (error) {
+      console.error('Error fetching permissions:', error);
+      }
   };
+
+  const fetchDesignation = async () => {
+    try {
+      const response = await axios.get('http://argonbackend.test/api/admin/designations');
+      setDesignations(response.data.designation);
+    } catch (error) {
+      console.error('Error fetching permissions:', error);
+    }
+};
   
     useEffect(() => {
       fetchTeacher();
+      fetchDesignation();
     }, []);
 
     const handleSaveChanges = async (formData) => {
-        try {
-            // Send formData to your server using an API call
-            await axios.post("http://argonbackend.test/api/admin/teacher/store", formData);
-            fetchTeacher();
-        } catch (error) {
-          console.error("An error occurred while saving teacher information:", error);
-        }
-      };
+      try {
+        console.log(selectedDesignation);
+          // Send formData to your server using an API call
+          await axios.post("http://argonbackend.test/api/admin/teacher/store", formData);
+          fetchTeacher();
+          toggleModal();
+      } catch (error) {
+        console.error("An error occurred while saving teacher information:", error);
+      }
+    };
   
     return (
       <>
@@ -91,6 +110,9 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
                     </div>
 
                     <CreateTeacherModal
+                        designations={designations}
+                        selectedDesignation={selectedDesignation}
+                        handleDesignationSelect={handleDesignationSelect}
                         createTeacherModal={createTeacherModal}
                         handleSaveChanges={handleSaveChanges}
                         toggleModal={toggleModal}
@@ -104,7 +126,6 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
                       <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Designation</th>
                         <th scope="col">Department</th>
                         <th scope="col">Courses</th>
                         <th scope="col">Contact No</th>
@@ -117,9 +138,8 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
                     <tbody>
                       {teachers.map((teacher, index) => (
                         <tr key={index}>
-                          <td>{index}</td>
+                          <td>{teacher.id}</td>
                           <td>{teacher.name}</td>
-                          <td>{teacher.designation}</td>
                           <td>{teacher.department}</td>
                           <td>
                                 {JSON.parse(teacher.courses).map((course, index) => (
