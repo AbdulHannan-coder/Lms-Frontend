@@ -53,7 +53,7 @@ import {
 
     const fetchParentPermissions = async () => {
         try {
-          const response = await axios.get("http://127.0.0.1:8000/api/permissions/parent-permissions");
+          const response = await axios.get("http://argonbackend.test/api/permissions/parent-permissions");
           setParentPermissions(response.data.parentPermissions);
         } catch (error) {
           console.error("Error fetching parent permissions:", error);
@@ -62,7 +62,7 @@ import {
 
     const fetchChildrenPermissions = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/permissions/children-permissions");
+        const response = await axios.get("http://argonbackend.test/api/permissions/children-permissions");
         setChildrenPermissions(response.data.childrenPermissions);
       } catch (error) {
         console.error("Error fetching children permissions:", error);
@@ -71,7 +71,7 @@ import {
 
     const handleSaveChildPermission = async () => {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/api/permissions/store/child-permission", {
+        const response = await axios.post("http://argonbackend.test/api/permissions/store/child-permission", {
           name: childName,
           description: childDesc,
           parent_id: parentId,
@@ -101,7 +101,7 @@ import {
 
     const updateChildPermission = async () => {
         try {
-          const response = await axios.put(`http://127.0.0.1:8000/api/permissions/update-child/${childToUpdate}`, {
+          const response = await axios.put(`http://argonbackend.test/api/permissions/update-child/${childToUpdate}`, {
             name: childName,
             description: childDesc,
             parent_id: parentId
@@ -140,7 +140,7 @@ import {
 
     const deleteChilPermission = async (childId) => {
         try {
-          const response = await axios.delete(`http://127.0.0.1:8000/api/permissions/delete-parent/${childId}`);
+          const response = await axios.delete(`http://argonbackend.test/api/permissions/delete-parent/${childId}`);
   
           fetchChildrenPermissions();
 

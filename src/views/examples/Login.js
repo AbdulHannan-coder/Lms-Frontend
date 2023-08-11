@@ -29,7 +29,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login", formData);
+      const response = await axios.post("http://argonbackend.test/api/login", formData);
       console.log(response.data); // Display the response from the API
       // Reset the form
       setFormData({ email: "", password: "" });
