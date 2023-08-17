@@ -15,7 +15,7 @@ import {
 // import CreateTeacherModal from "./Modal/CreateTeacherModal";
   
   const Department = (props) => {
-    const [designations, setDesignations] = useState([]);
+    const [departments, setDepartment] = useState([]);
 
     const [alertMessage, setAlertMessage] = useState("");
     const [alertVisible, setAlertVisible] = useState(false);
@@ -38,18 +38,18 @@ import {
       }, 3000);
     };
 
-    const fetchDesignation = async () => {
+    const fetchDepartments = async () => {
         try {
-        const response = await axios.get('http://argonbackend.test/api/admin/designations');
-        console.log(response.data.designation);
-        setDesignations(response.data.designation);
+        const response = await axios.get('http://argonbackend.test/api/admin/departments');
+        console.log(response.data.departments);
+        setDepartment(response.data.departments);
         } catch (error) {
         console.error('Error fetching permissions:', error);
         }
   };
   
     useEffect(() => {
-      fetchDesignation();
+      fetchDepartments();
     }, []);
   
     return (
@@ -68,7 +68,7 @@ import {
                 <CardHeader className="border-0">
                   <Row className="align-items-center">
                     <div className="col">
-                      <h3 className="mb-0">Designations</h3>
+                      <h3 className="mb-0">Departments</h3>
                     </div>
 
                   </Row>
@@ -79,14 +79,21 @@ import {
                       <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Action</th>
 
                       </tr>
                     </thead>
                     <tbody>
-                      {designations.map((designation, index) => (
+                      {departments.map((department, index) => (
                         <tr key={index}>
-                          <td>{designation.id}</td>
-                          <td>{designation.name}</td>
+                          <td>{department.id}</td>
+                          <td>{department.name}</td>
+                          <td>
+                            <Button className="btn" size="sm" color="primary">Edit</Button>
+                            <Button className="btn" size="sm" color="danger">
+                                Delete
+                            </Button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>

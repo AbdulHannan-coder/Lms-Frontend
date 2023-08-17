@@ -37,8 +37,16 @@ const CreateTeacherModal = (props) => {
   };
   
   const handleSaveClick = () => {
-    props.handleSaveChanges(formData);
-  };  
+    const updatedFormData = {
+      ...formData,
+      designation: selectedDesignation,
+    };
+  
+    console.log('Sending data to backend:', updatedFormData); // Add this line for debugging
+  
+    props.handleSaveChanges(updatedFormData);
+  };
+  
   
 
   return (
