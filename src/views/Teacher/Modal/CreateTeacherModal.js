@@ -5,8 +5,11 @@ const CreateTeacherModal = (props) => {
   const {
     handleSaveChanges,
     designations,
+    departments,
+    selectedDepartment,
     selectedDesignation,
     handleDesignationSelect,
+    handleDepartmentSelect,
     toggleModal,
   } = props;
 
@@ -40,6 +43,7 @@ const CreateTeacherModal = (props) => {
     const updatedFormData = {
       ...formData,
       designation: selectedDesignation,
+      department: selectedDepartment
     };
   
     console.log('Sending data to backend:', updatedFormData); // Add this line for debugging
@@ -116,8 +120,9 @@ const CreateTeacherModal = (props) => {
                         <Input
                           className="form-control-alternative"
                           id="designation"
-                          name="designation"
+                          name="designation[]"
                           type="select"
+                          multiple 
                           value={selectedDesignation}
                           onChange={handleDesignationSelect}
                         >
@@ -136,10 +141,19 @@ const CreateTeacherModal = (props) => {
                         <Input
                           className="form-control-alternative"
                           id="department"
-                          type="text"
-                          value={formData.department}
-                          onChange={handleInputChange}
-                        />
+                          name="department[]"
+                          type="select"
+                          multiple 
+                          value={selectedDepartment}
+                          onChange={handleDepartmentSelect}
+                        >
+                          <option value="">Select Department:</option>
+                          {departments.map((department, index) => (
+                            <option key={index} value={department.id}>
+                              {department.name}
+                            </option>
+                          ))}
+                        </Input>
                       </Col>
                     </Row>
 

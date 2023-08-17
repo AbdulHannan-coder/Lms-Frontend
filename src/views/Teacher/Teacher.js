@@ -22,12 +22,19 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
   const Teacher = (props) => {
     const [teachers, setTeachers] = useState([]);
     const [designations, setDesignations] = useState([]);
+    const [departments, setDepartments] = useState([]);
 
-    const [selectedDesignation, setSelectedDesignation] = useState("");
+    const [selectedDesignation, setSelectedDesignation] = useState([]);
+    const [selectedDepartment, setSelectedDepartment] = useState([]);
 
     const handleDesignationSelect = (event) => {
-      const designation = event.target.value;
-      setSelectedDesignation(designation);
+      const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
+      setSelectedDesignation(selectedOptions);
+    };
+
+    const handleDepartmentSelect = (event) => {
+      const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
+      setSelectedDepartment(selectedOptions);
     };
 
     const [alertMessage, setAlertMessage] = useState("");
@@ -68,10 +75,20 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
       console.error('Error fetching permissions:', error);
     }
   };
+
+  const fetchDepartments = async () => {
+    try {
+    const response = await axios.get('http://argonbackend.test/api/admin/departments');
+    setDepartments(response.data.departments);
+    } catch (error) {
+    console.error('Error fetching permissions:', error);
+    }
+  };
   
     useEffect(() => {
       fetchTeacher();
       fetchDesignation();
+      fetchDepartments();
     }, []);
 
     const handleSaveChanges = async (formData) => {
@@ -85,7 +102,6 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
         console.error("An error occurred while saving teacher information:", error);
       }
     };
-
     
     const [teacherName, setTeacherName] = useState("");
     const [teacherImg, setTeacherImg] = useState("");
@@ -205,7 +221,10 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
 
                     <CreateTeacherModal
                         designations={designations}
+                        departments={departments}
+                        selectedDepartment={selectedDepartment}
                         selectedDesignation={selectedDesignation}
+                        handleDepartmentSelect={handleDepartmentSelect}
                         handleDesignationSelect={handleDesignationSelect}
                         createTeacherModal={createTeacherModal}
                         handleSaveChanges={handleSaveChanges}
@@ -376,6 +395,11 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
                           <td>
                             {teacher.designations.map((designation) => (
                               <div key={designation.id}>{designation.name}</div>
+                            ))}
+                          </td>
+                          <td>
+                            {teacher.departments.map((department) => (
+                              <div key={department.id}>{department.name}</div>
                             ))}
                           </td>
                           <td>{teacher.department}</td>
