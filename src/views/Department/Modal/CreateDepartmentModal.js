@@ -51,7 +51,7 @@ const CreateDepartmentModal = (props) => {
           <Row>
             <Col>
               <Label for="name" size="md">
-                Add Teacher
+                Add Department
               </Label>
             </Col>
           </Row>
