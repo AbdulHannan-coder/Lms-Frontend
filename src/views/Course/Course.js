@@ -223,6 +223,9 @@ import CreateCourseModal from "./Modal/CreateCourseModal";
                       <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Credit Hours</th>
                         <th scope="col" className="d-flex justify-content-center">Action</th>
                       </tr>
                     </thead>
@@ -231,6 +234,9 @@ import CreateCourseModal from "./Modal/CreateCourseModal";
                         <tr key={index}>
                           <td>{course.id}</td>
                           <td>{course.title}</td>
+                          <td>{course.code}</td>
+                          <td>{course.department}</td>
+                          <td>{course.credit_hours}</td>
                           <td className="d-flex justify-content-center">
                             <Button className="btn" size="sm" color="primary" onClick={() => handleEditCourse(course)}>Edit</Button>
                             <Button className="btn" size="sm" color="danger" onClick={() => handleDeleteCourse(course.id)}>Delete</Button>
