@@ -107,6 +107,7 @@ const CreateTeacherModal = (props) => {
                           id="image"
                           type="text"
                           value={formData.image}
+                          
                           onChange={handleInputChange}
                         />
                       </Col>

@@ -44,7 +44,6 @@ import CreateCourseModal from "./Modal/CreateCourseModal";
       setAlertColor(color);
       setAlertVisible(true);
   
-      // Hide the alert after 3 seconds (3000 milliseconds)
       setTimeout(() => {
         setAlertVisible(false);
       }, 3000);
@@ -65,7 +64,6 @@ import CreateCourseModal from "./Modal/CreateCourseModal";
 
     const handleSaveChanges = async (formData) => {
       try {
-          // Send formData to your server using an API call
         const response = await axios.post("http://argonbackend.test/api/admin/course/store", formData);
         fetchCourses();
         toggleCreateModal();
@@ -87,12 +85,10 @@ import CreateCourseModal from "./Modal/CreateCourseModal";
           name: name,
         });
   
-        // Handle the success response
-        console.log(response.data); // You can handle the response as per your requirement
+        console.log(response.data); 
 
         fetchCourses();
   
-        // Close the modal and clear the input fields
         setName("");
         setEditCourseModal(false);
 
@@ -100,7 +96,6 @@ import CreateCourseModal from "./Modal/CreateCourseModal";
   
       } catch (error) {
         console.error("Error updating role:", error);
-        // Show error alert or perform any other necessary actions
         if (error.response && error.response.data && error.response.data.message) {
             showAlert(error.response.data.message, "danger");
         } else {
@@ -120,10 +115,8 @@ import CreateCourseModal from "./Modal/CreateCourseModal";
         const response = await axios.delete(`http://argonbackend.test/api/admin/course/delete/${courseId}`);
         fetchCourses();
         showAlert(response.data.message, "success");
-        // Refresh the roles list or perform any other necessary actions
       } catch (error) {
         console.error("Error deleting role:", error);
-        // Show error alert or perform any other necessary actions
         if (error.response && error.response.data && error.response.data.message) {
           showAlert(error.response.data.message, "danger");
         } else {
