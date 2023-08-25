@@ -384,7 +384,6 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
                         <th scope="col">Email</th>
                         <th scope="col">Image</th>
                         <th scope='col'>Action</th>
-
                       </tr>
                     </thead>
                     <tbody>
@@ -402,7 +401,7 @@ import CreateTeacherModal from "./Modal/CreateTeacherModal";
                               <div key={department.id}>{department.name}</div>
                             ))}
                           </td>
-                          <td>{teacher.department}</td>
+                          {/* <td>{teacher.department}</td> */}
                           <td>
                                 {JSON.parse(teacher.courses).map((course, index) => (
                                     <span key={index}>
