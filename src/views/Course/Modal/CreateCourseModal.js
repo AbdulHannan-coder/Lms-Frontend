@@ -62,17 +62,44 @@ const CreateCourseModal = (props) => {
                   <div>
                     <Row className='p-2'>
                       <Col>
-                        <Label for="name" size="md">
-                          Name
+                        <Label for="title" size="md">
+                          TItle
                         </Label>
                         <Input
                           className="form-control-alternative"
-                          id="name"
+                          id="title"
                           type="text"
-                          value={formData.name}
+                          value={formData.title}
                           onChange={handleNameChange}
                         />
                       </Col>
+                      <Col>
+                        <Label for="code" size="md">
+                          Code
+                        </Label>
+                        <Input
+                          className="form-control-alternative"
+                          id="code"
+                          type="number"
+                          value={formData.code}
+                          onChange={handleNameChange}
+                        />
+                      </Col>
+                    </Row>
+                    <Row className='p-2'>
+                      <Col>
+                        <Label for="credit_hours" size="md">
+                          Credit Hours
+                        </Label>
+                        <Input
+                          className="form-control-alternative"
+                          id="credit_hours"
+                          type="number"
+                          value={formData.credit_hours}
+                          onChange={handleNameChange}
+                        />
+                      </Col>
+                     
                     </Row>
                   </div>
                 </FormGroup>
