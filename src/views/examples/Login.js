@@ -31,7 +31,10 @@ const Login = () => {
     try {
       const response = await axios.post("http://argonbackend.test/api/login", formData);
       console.log(response.data); // Display the response from the API
-      // Reset the form
+      const token = localStorage.getItem('token');
+      if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      }
       setFormData({ email: "", password: "" });
       // Redirect to the desired page after successful login
       navigate("/admin/index");
@@ -39,6 +42,7 @@ const Login = () => {
       console.log(error.response.data); // Display the error response from the API
     }
   };
+  
 
   return (
     <>
