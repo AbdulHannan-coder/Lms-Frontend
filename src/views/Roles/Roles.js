@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
     Button,
     Card,
@@ -17,30 +18,36 @@ import {
   import axios from "axios";
   import React, { useState, useEffect } from "react";
   import CreateRoleModal from "../Roles/Modal/CreateRoleModal";
+  import { useAuth } from "context/AuthContext ";
   
   const Roles = (props) => {
+    const {setToken } = useAuth(); //yeh line
     const [roles, setRoles] = useState([]);
     const [createRoleModal, setCreateRoleModal] = useState(false);
     const [editRoleModal, setEditRoleModal] = useState(false);
     const [roleName, setRoleName] = useState("");
     const [roleDesc, setRoleDesc] = useState("");
-
-    const [alertMessage, setAlertMessage] = useState("");
+      const [alertMessage, setAlertMessage] = useState("");
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertColor, setAlertColor] = useState("");
     const [roleToUpdate, setRoleToUpdate] = useState(null);
-  
+    
     const showAlert = (message, color) => {
       setAlertMessage(message);
       setAlertColor(color);
       setAlertVisible(true);
-  
+      
       // Hide the alert after 3 seconds (3000 milliseconds)
       setTimeout(() => {
         setAlertVisible(false);
       }, 3000);
     };
-  
+    
+     //yeh line
+    useEffect(()=>{
+      setToken(localStorage.getItem('token'))
+    }, [])
+    
     const toggleCreateRoleModal = () => {
       setCreateRoleModal(!createRoleModal);
     };

@@ -105,8 +105,9 @@ const CreateTeacherModal = (props) => {
                         <Input
                           className="form-control-alternative"
                           id="image"
-                          type="text"
+                          type="file"
                           value={formData.image}
+                          
                           onChange={handleInputChange}
                         />
                       </Col>
@@ -174,7 +175,7 @@ const CreateTeacherModal = (props) => {
                       <Col>
                         <Label for="email" size="md">
                           Email
-                        </Label>
+                        </Label>~
                         <Input
                           className="form-control-alternative"
                           id="email"
@@ -184,7 +185,7 @@ const CreateTeacherModal = (props) => {
                         />
                       </Col>
                     </Row>
-
+                            
                     <Row className='p-2'>
                       <Col>
                           <Label for="courses" size="md">

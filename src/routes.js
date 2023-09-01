@@ -28,26 +28,32 @@ import RolesPermission from "views/Roles_Permission/Roles_Permission";
 import Teacher from "views/Teacher/Teacher";
 import Designation from "views/Designation/Designation";
 import Department from "views/Department/Department";
+import Course from "views/Course/Course";
+import ProtectedRoute from "ProtectedRoute";
+
+const isAuthenticated = localStorage.getItem('token') !== null;
+
 
 var routes = [
   {
     path: "/index",
     name: "Dashboard",
-    icon: "ni ni-tv-2 text-primary",
+    icon: "ni ni-chart-bar-32 text-yellow",
     component: <Index />,
     layout: "/admin",
   },
   {
     path: "/roles",
     name: "Roles",
-    icon: "ni ni-tv-2 text-primary",
+    icon: "ni ni-circle-08 text-yellow",
     component: <Roles />,
     layout: "/admin",
   },
+
   {
     path: "/permissions",
     name: "Permissions",
-    icon: "ni ni-tv-2 text-primary",
+    icon: "ni ni-world-2 text-yellow",
     component: <Permissions />,
     layout: "/admin",
   },
@@ -55,28 +61,35 @@ var routes = [
   {
     path: "/roles_permissions",
     name: "Roles & Permissions",
-    icon: "ni ni-tv-2 text-primary",
+    icon: "ni ni-lock-circle-open text-yellow",
     component: <RolesPermission />,
+    layout: "/admin",
+  },
+  {
+    path: "/courses",
+    name: "Courses",
+    icon: "ni ni-bullet-list-67 text-yellow",
+    component: <Course />,
     layout: "/admin",
   },
   {
     path: "/teachers",
     name: "Teachers",
-    icon: "ni ni-tv-2 text-primary",
+    icon: "ni ni-single-02 text-yellow",
     component: <Teacher />,
     layout: "/admin",
   },
   {
     path: "/designations",
     name: "Designation",
-    icon: "ni ni-tv-2 text-primary",
+    icon: "ni ni-briefcase-24 text-yellow",
     component: <Designation />,
     layout: "/admin",
   },
   {
     path: "/departments",
     name: "Departments",
-    icon: "ni ni-tv-2 text-primary",
+    icon: "ni ni-archive-2 text-yellow",
     component: <Department />,
     layout: "/admin",
   },
@@ -87,12 +100,13 @@ var routes = [
     component: <Login />,
     layout: "/auth",
   },
-  {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
-    component: <Register />,
-    layout: "/auth",
-  },
+  // {
+  //   path: "/register",
+  //   name: "Register",
+  //   icon: "ni ni-circle-08 text-pink",
+  //   component: <Register />,
+  //   layout: "/auth",
+  // },
+  
 ];
 export default routes;

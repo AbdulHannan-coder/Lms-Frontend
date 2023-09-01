@@ -12,11 +12,13 @@ import {
   import NormHeader from "components/Headers/NormalHeader/NormHeader";
   import axios from "axios";
   import React, { useState, useEffect } from "react";
+  import { useAuth } from "context/AuthContext ";
+
 // import CreateTeacherModal from "./Modal/CreateTeacherModal";
   
   const Designation = (props) => {
     const [designations, setDesignations] = useState([]);
-
+    const {setToken } = useAuth(); //yeh lineha
     const [alertMessage, setAlertMessage] = useState("");
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertColor, setAlertColor] = useState("");
@@ -38,10 +40,19 @@ import {
       }, 3000);
     };
 
+    useEffect(()=>{
+      setToken(localStorage.getItem('token'))
+    }, [])
+
     const fetchDesignation = async () => {
         try {
         const response = await axios.get('http://argonbackend.test/api/admin/designations');
         console.log(response.data.designation);
+        console.log(response)
+        const token = localStorage.getItem('token');
+        if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      }
         setDesignations(response.data.designation);
         } catch (error) {
         console.error('Error fetching permissions:', error);

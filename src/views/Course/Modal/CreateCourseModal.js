@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import { Button, Form, Input, Modal, Row, Col, FormGroup, Label } from "reactstrap";
 
-const CreateDepartmentModal = (props) => {
+const CreateCourseModal = (props) => {
   const {
     handleSaveChanges,
-    createDepartmentModal,
+    createCourseModal,
     toggleCreateModal,
   } = props;
 
@@ -31,7 +31,7 @@ const CreateDepartmentModal = (props) => {
   return (
     <Modal
       className="modal-dialog-centered"
-      isOpen={props.createDepartmentModal}
+      isOpen={props.createCourseModal}
       toggle={props.toggleCreateModal}
       size={"md"}
     >
@@ -51,7 +51,7 @@ const CreateDepartmentModal = (props) => {
           <Row>
             <Col>
               <Label for="name" size="md">
-                Add Department
+                Add Course
               </Label>
             </Col>
           </Row>
@@ -62,17 +62,44 @@ const CreateDepartmentModal = (props) => {
                   <div>
                     <Row className='p-2'>
                       <Col>
-                        <Label for="name" size="md">
-                          Name
+                        <Label for="title" size="md">
+                          TItle
                         </Label>
                         <Input
                           className="form-control-alternative"
-                          id="name"
+                          id="title"
                           type="text"
-                          value={formData.name}
+                          value={formData.title}
                           onChange={handleNameChange}
                         />
                       </Col>
+                      <Col>
+                        <Label for="code" size="md">
+                          Code
+                        </Label>
+                        <Input
+                          className="form-control-alternative"
+                          id="code"
+                          type="number"
+                          value={formData.code}
+                          onChange={handleNameChange}
+                        />
+                      </Col>
+                    </Row>
+                    <Row className='p-2'>
+                      <Col>
+                        <Label for="credit_hours" size="md">
+                          Credit Hours
+                        </Label>
+                        <Input
+                          className="form-control-alternative"
+                          id="credit_hours"
+                          type="number"
+                          value={formData.credit_hours}
+                          onChange={handleNameChange}
+                        />
+                      </Col>
+                     
                     </Row>
                   </div>
                 </FormGroup>
@@ -93,4 +120,4 @@ const CreateDepartmentModal = (props) => {
   );
 };
 
-export default CreateDepartmentModal;
+export default CreateCourseModal;
