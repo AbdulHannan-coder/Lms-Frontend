@@ -17,10 +17,12 @@ import {
   Row,
   Col,
 } from "reactstrap";
-
+import { useAuth } from "context/AuthContext ";
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
+  
+  const { setToken } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,23 +32,20 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://argonbackend.test/api/login", formData);
-      console.log(response.data); // Display the response from the API
       const token = response.data.token; // Extract the token from the response
-      console.log(token)
       localStorage.setItem('token', token);
       if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        setToken(token)
       }
-      // Reset the form
+      console.log('Auth Header inside token :',axios.defaults.headers.common['Authorization'] )
       setFormData({ email: "", password: "" });
-      // Redirect to the desired page after successful login
       navigate("/admin/index");
     } catch (error) {
-      console.log(error.response.data); // Display the error response from the API
     }
   };
   
-
+  console.log('Auth Header token out:',axios.defaults.headers.common['Authorization'] )
+     
   return (
     <>
       <Col lg="5" md="7">

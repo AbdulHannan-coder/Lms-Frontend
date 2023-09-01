@@ -41,7 +41,8 @@ const AdminNavbar = (props) => {
     try {
       const response = await axios.post("http://argonbackend.test/api/logout");
       console.log(response.data); // Display the response from the API
-     
+      localStorage.removeItem('token');
+      
       navigate("/auth/login");
     } catch (error) {
       console.log(error.response.data); // Display the error response from the API

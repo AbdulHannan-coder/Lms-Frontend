@@ -29,6 +29,10 @@ import Teacher from "views/Teacher/Teacher";
 import Designation from "views/Designation/Designation";
 import Department from "views/Department/Department";
 import Course from "views/Course/Course";
+import ProtectedRoute from "ProtectedRoute";
+
+const isAuthenticated = localStorage.getItem('token') !== null;
+
 
 var routes = [
   {
